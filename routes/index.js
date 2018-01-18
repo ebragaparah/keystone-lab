@@ -26,6 +26,9 @@ var importRoutes = keystone.importer(__dirname);
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
+// Set specific theme to the Admin page
+// keystone.set('adminui custom styles', '../custom/_adminui.less');
+
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views'),
@@ -33,6 +36,10 @@ var routes = {
 
 // Setup Route Bindings
 exports = module.exports = function (app) {
+        app.get('/keystone/styles/keystone.min.css', function (req, res) {
+	  res.sendFile('./dist/styles/keystone.min.css');
+	});
+  
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/blog/:category?', routes.views.blog);
