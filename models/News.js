@@ -2,7 +2,7 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
 var News = new keystone.List('News', {
-  map: { name: 'title' },
+  map: { name: 'metadata.title' },
   autokey: { path: 'slug', from: 'metadata.title', unique: true },
 });
 
