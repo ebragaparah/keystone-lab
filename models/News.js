@@ -3,17 +3,16 @@ var Types = keystone.Field.Types;
 
 var News = new keystone.List('News', {
   map: { name: 'title' },
-  autokey: { path: 'slug', from: 'title', unique: true },
+  autokey: { path: 'slug', from: 'metadata.title', unique: true },
 });
 
 News.add({
-  _id: { type: String },
   updated_at: { type: Date, default: Date.now },
   published_at: { type: Date, default: Date.now },
   created_at: { type: Date, default: Date.now },
   status: { type: String },
-  sections: { type: [] },
-  tags: { type: [String] },
+  sections: { type: Types.TextArray },
+  tags: { type: Types.TextArray },
   related_news: { type: Types.Relationship, ref: 'News', many: true },
   metadata: {
     title: { type: String },
@@ -44,8 +43,7 @@ News.add({
       }
     },
     url: { type: String }
-  },
-  __v: { type: String }
+  }
 });
 
 News.register();
