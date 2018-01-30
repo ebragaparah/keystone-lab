@@ -10,7 +10,7 @@ News.add({
   updated_at: { type: Date, default: Date.now },
   published_at: { type: Date, default: Date.now },
   created_at: { type: Date, default: Date.now },
-  status: { type: String },
+  status: { type: Types.Select, options: 'publicado, rascunho' },
   sections: { type: Types.TextArray },
   tags: { type: Types.TextArray },
   related_news: { type: Types.Relationship, ref: 'News', many: true },
